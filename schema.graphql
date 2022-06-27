@@ -1,0 +1,38 @@
+enum MediaTypes {
+  jpg
+  png
+}
+
+type Media {
+  id: ID!
+  type: MediaTypes!
+  url: String!
+  isSomething: Boolean @deprecated(reason: "I don't like this")
+}
+
+type Task {
+  id: ID!
+  delay: Int!
+}
+
+type Item {
+  id: ID!
+  medias: [Media]
+  task: Task
+}
+
+input MediaInput {
+  type: MediaTypes!
+  url: String!
+}
+
+type Query {
+  media(id: String!): Media!
+  medias: [Media]!
+  hil(id: String!): Hil!
+  task: Task!
+}
+
+type Mutation {
+  createMedia(input: MediaInput!): Media!
+}
